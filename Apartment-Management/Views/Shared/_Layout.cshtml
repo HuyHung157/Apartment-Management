@@ -23,11 +23,24 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    
+                </ul>
+                <ul class="nav navbar-nav block">
+                    <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
+                    <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
+                    <li>@Html.ActionLink("Apartments", "Index", "Apartments")</li>
+                    <li>@Html.ActionLink("ApartmentDetails", "Index", "ApartmentDetails")</li>
+                    <li>@Html.ActionLink("BuildingEmployees", "Index", "BuildingEmployees")</li>
+                    <li>@Html.ActionLink("ServiceDetails", "Index", "ServiceDetails")</li>
+                    <li>@Html.ActionLink("ServiceTypes", "Index", "ServiceTypes")</li>
+                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top: 50px">
         @RenderBody()
         <hr />
         <footer>
