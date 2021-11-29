@@ -1,0 +1,19 @@
+﻿img{
+    max-width: 100%;
+}
+
+footer {
+    background-color: #918055;
+    color: white;
+    padding: 10px;
+}
+
+footer p {
+    color: white;
+}
+
+.team-list{
+    display: inline-block !important;
+    margin: 0 auto;
+    color: black;
+}

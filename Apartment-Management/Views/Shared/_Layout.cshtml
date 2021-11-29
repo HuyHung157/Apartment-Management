@@ -3,53 +3,128 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Quản lý chung cư ABC</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="~/Content/Site.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/css/sidebar.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Quản lý chung cư", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    
+
+                    </ul>
+                    <ul class="nav navbar-nav block">
+                        <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
+                        <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
+                        <li>@Html.ActionLink("Apartments", "Index", "Apartments")</li>
+                        <li>@Html.ActionLink("ApartmentDetails", "Index", "ApartmentDetails")</li>
+                        <li>@Html.ActionLink("BuildingEmployees", "Index", "BuildingEmployees")</li>
+                        <li>@Html.ActionLink("ServiceDetails", "Index", "ServiceDetails")</li>
+                        <li>@Html.ActionLink("ServiceTypes", "Index", "ServiceTypes")</li>
+                        <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content" style="margin-top: 50px">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p class="text-center">&copy; @DateTime.Now.Year - Nhóm <strong> 16 </strong></p>
+                <ul class="team-list d-flex">
+                    <li>Trần Huy Hùng - 1651012074</li>
+                    <li>Nguyễn Thị Quỳnh Như - 1854050080</li>
                 </ul>
-                <ul class="nav navbar-nav block">
-                    <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
-                    <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
-                    <li>@Html.ActionLink("Apartments", "Index", "Apartments")</li>
-                    <li>@Html.ActionLink("ApartmentDetails", "Index", "ApartmentDetails")</li>
-                    <li>@Html.ActionLink("BuildingEmployees", "Index", "BuildingEmployees")</li>
-                    <li>@Html.ActionLink("ServiceDetails", "Index", "ServiceDetails")</li>
-                    <li>@Html.ActionLink("ServiceTypes", "Index", "ServiceTypes")</li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                </ul>
+            </footer>
+        </div>
+    *@
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar" >
+            <div class="sidebar-header">
+                <h3>Quản lý chung cư ABC</h3>
+                <strong>ABC</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="@Url.Action("Index", "Home")"> <i class="fa fa-home"></i> Home </a>
+                </li>
+                <li>
+                    <a href="#locationSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-location-arrow"></i>
+                        Địa điểm
+                    </a>
+                    <ul class="collapse list-unstyled" id="locationSubmenu">
+                        <li><a href="@Url.Action("Index", "Branches")"><i class="fa fa-code-branch"></i></i>Chi nhánh</a></li>
+                        <li><a href="@Url.Action("Index", "Buildings")"> <i class="far fa-building"></i> Tòa nhà</a></li>
+                        <li><a href="@Url.Action("Index", "Apartments")"><i class="fas fa-door-closed"></i>Căn hộ</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#accountSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-file"></i>
+                        Tài khoản
+                    </a>
+                    <ul class="collapse list-unstyled" id="accountSubmenu">
+                        <li><a href="@Url.Action("Index", "Users")"><i class="fa fa-user"></i>Cư dân</a></li>
+                        <li><a href="@Url.Action("Index", "Employees")"><i class="fa fa-user-cog"></i>Nhân viên</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#serviceSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-hand-holding-heart"></i>
+                        Dịch vụ
+                    </a>
+                    <ul class="collapse list-unstyled" id="serviceSubmenu">
+                        <li><a href="@Url.Action("Index", "ServiceDetails")"><i class="fa fa-clipboard-list"></i>Hóa đơn</a></li>
+                        <li><a href="@Url.Action("Index", "ServiceTypes")"><i class="fa fa-list-ul"></i>Loại dịch vụ</a></li>
+                    </ul>
+                </li>
+                <li> <a href="#"> <i class="fas fa-cog"></i>  Cài đặt </a> </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <div class="content__container h-100 d-flex flex-column">
+                <div class="main-content" style="flex: 1">
+                    @RenderBody()
+                </div>
+
+                <footer class="text-center">
+                    <p class="copyright text-center">&copy; @DateTime.Now.Year - Nhóm 16</p>
+                    <ul class="team-list list-group text-left">
+                        <li class="list-group-item w-100">Trần Huy Hùng - 1651012074</li>
+                        <li class="list-group-item">Nguyễn Thị Quỳnh Như - 1854050080</li>
+                    </ul>
+                </footer>
             </div>
         </div>
     </div>
-    <div class="container body-content" style="margin-top: 50px">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="~/Content/js/sidebar.js"></script>
 </body>
 </html>
