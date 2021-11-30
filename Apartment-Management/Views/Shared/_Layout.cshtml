@@ -8,64 +8,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="~/Content/Site.css" rel='stylesheet' type='text/css' />
-    <link href="~/Content/css/sidebar.css" rel="stylesheet" />
-    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <link href="~/Content/css/sidebar.css" rel="stylesheet" type='text/css' />
+    <link href="~/Content/css/main.css" rel="stylesheet" type='text/css' />
 </head>
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Quản lý chung cư", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-
-
-                    </ul>
-                    <ul class="nav navbar-nav block">
-                        <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
-                        <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
-                        <li>@Html.ActionLink("Apartments", "Index", "Apartments")</li>
-                        <li>@Html.ActionLink("ApartmentDetails", "Index", "ApartmentDetails")</li>
-                        <li>@Html.ActionLink("BuildingEmployees", "Index", "BuildingEmployees")</li>
-                        <li>@Html.ActionLink("ServiceDetails", "Index", "ServiceDetails")</li>
-                        <li>@Html.ActionLink("ServiceTypes", "Index", "ServiceTypes")</li>
-                        <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container body-content" style="margin-top: 50px">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p class="text-center">&copy; @DateTime.Now.Year - Nhóm <strong> 16 </strong></p>
-                <ul class="team-list d-flex">
-                    <li>Trần Huy Hùng - 1651012074</li>
-                    <li>Nguyễn Thị Quỳnh Như - 1854050080</li>
-                </ul>
-            </footer>
-        </div>
-    *@
     <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar" >
+        <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Quản lý chung cư ABC</h3>
                 <strong>ABC</strong>
             </div>
 
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="@Url.Action("Index", "Home")"> <i class="fa fa-home"></i> Home </a>
                 </li>
                 <li>
@@ -107,7 +67,15 @@
         <!-- Page Content Holder -->
         <div id="content">
             <div class="content__container h-100 d-flex flex-column">
+
                 <div class="main-content" style="flex: 1">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+
+                            ĐĂNG NHẬP
+
+                        </div>
+                    </nav>
                     @RenderBody()
                 </div>
 
@@ -126,5 +94,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="~/Content/js/sidebar.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

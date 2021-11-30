@@ -156,6 +156,10 @@
     <Compile Include="Migrations\202111241321060_UpdateBuildingTable.Designer.cs">
       <DependentUpon>202111241321060_UpdateBuildingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111301747505_upadte-table-employees.cs" />
+    <Compile Include="Migrations\202111301747505_upadte-table-employees.Designer.cs">
+      <DependentUpon>202111301747505_upadte-table-employees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentDetail.cs" />
@@ -163,6 +167,7 @@
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\BuildingEmployees.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\ServiceDetail.cs" />
     <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Models\User.cs" />
@@ -227,11 +232,6 @@
     <Content Include="Views\BuildingEmployees\Details.cshtml" />
     <Content Include="Views\BuildingEmployees\Edit.cshtml" />
     <Content Include="Views\BuildingEmployees\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\ServiceTypes\Create.cshtml" />
     <Content Include="Views\ServiceTypes\Delete.cshtml" />
     <Content Include="Views\ServiceTypes\Details.cshtml" />
@@ -252,6 +252,11 @@
     <Content Include="Views\Buildings\Details.cshtml" />
     <Content Include="Views\Buildings\Edit.cshtml" />
     <Content Include="Views\Buildings\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111241321060_UpdateBuildingTable.resx">
       <DependentUpon>202111241321060_UpdateBuildingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111301747505_upadte-table-employees.resx">
+      <DependentUpon>202111301747505_upadte-table-employees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
