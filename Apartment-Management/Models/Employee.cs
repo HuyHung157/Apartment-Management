@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +10,14 @@ namespace Apartment_Management.Models
     public class Employee
     {
         public int EmployeeID { get; set; }
+       [DisplayName("User Name")]
+       [Required(ErrorMessage ="This field is required")]
         public Role Role { get; set; }
         public string Username { get; set; }
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "This field is required")]
         public string Password { get; set; }
+        public string loginerror { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
