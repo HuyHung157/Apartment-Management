@@ -21,48 +21,50 @@
     @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <div class="container-fluid mx-auto">
-            <div class="card card0 border-0">
-                <div class="row d-flex">
-                    <div class="col-lg-6">
-                        <div class="login-logo">
-                            <img class="main-logo" src="~/Content/images/logo.jpg" />
+        <section class="login__section">
+            <div class="login__container container-fluid mx-auto">
+                <div class="card card0 border-0">
+                    <div class="row d-flex">
+                        <div class="col-lg-6">
+                            <div class="login-logo">
+                                <img class="main-logo" src="~/Content/images/logo.jpg" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="card2 card border-0 px-4 py-5">
+                        <div class="col-lg-6 d-flex align-items-center">
+                            <div class="card2 card border-0 px-4 py-5">
 
-                            <div class="row px-3">
-                                <label class="mb-1">
-                                    @Html.LabelFor(model => model.Username)
-                                    @Html.EditorFor(model => model.Username)
-                                    @*<h6 class="mb-0 text-sm">User Name</h6>*@
-                                </label> @*<input class="mb-4" type="text" name="username" placeholder="Enter a valid user name">*@
-                            </div>
-                            <div class="row px-3">
-                                <label class="mb-1">
-                                    @Html.LabelFor(model => model.Password)
-                                    @Html.EditorFor(model => model.Password)
-                                    @*<h6 class="mb-0 text-sm">Password</h6>*@
-                                </label> @*<input type="password" name="password" placeholder="Enter password">*@
-                            </div>
-                            <div>
-                                @Html.ValidationMessageFor(model => model.Password)
-                                <label class="field-validation-error">@Html.DisplayFor(model => model.loginerror)</label>
-                            </div>
-                            <div class="row mb-3 px-3"> @*<button type="submit" class="btn btn-blue text-center">Login</button>*@ <input type="submit" name="name" value="Login"/></div>
+                                <div class="row px-3">
+                                    <label class="mb-1">
+                                        @Html.LabelFor(model => model.Username)
+                                        @Html.EditorFor(model => model.Username)
+                                        @*<h6 class="mb-0 text-sm">User Name</h6>*@
+                                    </label> @*<input class="mb-4" type="text" name="username" placeholder="Enter a valid user name">*@
+                                </div>
+                                <div class="row px-3">
+                                    <label class="mb-1">
+                                        @Html.LabelFor(model => model.Password)
+                                        @Html.EditorFor(model => model.Password)
+                                        @*<h6 class="mb-0 text-sm">Password</h6>*@
+                                    </label> @*<input type="password" name="password" placeholder="Enter password">*@
+                                </div>
+                                <div>
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                    <label class="field-validation-error">@Html.DisplayFor(model => model.loginerror)</label>
+                                </div>
+                                <button type="submit" class="w-100 btn btn-login text-center">Login</button>
 
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="footer py-4">
-                    <div class="row px-3">
-                        <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2019. All rights reserved.</small>
-                        <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <footer class="footer-login py-4">
+            <div class="row px-3">
+                <p class="text-center ml-4 ml-sm-5 mb-2">Copyright &copy; 2021. All rights reserved.</p>
+            </div>
+        </footer>
     }
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
