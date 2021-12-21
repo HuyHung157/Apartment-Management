@@ -34,7 +34,7 @@
                         Địa điểm
                     </a>
                     <ul class="collapse list-unstyled" id="locationSubmenu">
-                        <li><a href="@Url.Action("Index", "Branches")"><i class="fa fa-code-branch"></i></i>Chi nhánh</a></li>
+                        <li><a href="@Url.Action("Index", "Branches")"><i class="fa fa-code-branch"></i>Chi nhánh</a></li>
                         <li><a href="@Url.Action("Index", "Buildings")"> <i class="far fa-building"></i> Tòa nhà</a></li>
                         <li><a href="@Url.Action("Index", "Apartments")"><i class="fas fa-door-closed"></i>Căn hộ</a></li>
                     </ul>
@@ -71,9 +71,13 @@
                 <div class="main-content" style="flex: 1">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            
-                            Đăng Nhập
-                            
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span> Xin chào, <strong>  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest" ) </strong>  </span>
+                                <a href="@Url.Action("Signout", "Login")"><i class="mr-2 far fa-arrow-alt-circle-left"></i>Sign out</a>
+                            }
+
                         </div>
                     </nav>
                     @RenderBody()

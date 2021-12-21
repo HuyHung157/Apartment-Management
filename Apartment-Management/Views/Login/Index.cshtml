@@ -18,7 +18,7 @@
     <link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+    @using (Html.BeginForm("Autherize", "Login", new { returnUrl = Request.QueryString["ReturnUrl"] },FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <section class="login__section">
@@ -36,21 +36,26 @@
                                 <div class="row px-3">
                                     <label class="mb-1">
                                         @Html.LabelFor(model => model.Username)
-                                        @Html.EditorFor(model => model.Username)
-                                        @*<h6 class="mb-0 text-sm">User Name</h6>*@
-                                    </label> @*<input class="mb-4" type="text" name="username" placeholder="Enter a valid user name">*@
+                                    </label>
+                                    @Html.EditorFor(model => model.Username)
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        <span class="w-100 text-danger"> @Html.ValidationMessageFor(model => model.Username) </span>
+                                    }
                                 </div>
                                 <div class="row px-3">
                                     <label class="mb-1">
                                         @Html.LabelFor(model => model.Password)
-                                        @Html.EditorFor(model => model.Password)
-                                        @*<h6 class="mb-0 text-sm">Password</h6>*@
-                                    </label> @*<input type="password" name="password" placeholder="Enter password">*@
+                                    </label>
+                                    @Html.EditorFor(model => model.Password)
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        <span class="w-100 text-danger"> @Html.ValidationMessageFor(model => model.Password) </span>
+                                    }
                                 </div>
-                                <div>
-                                    @Html.ValidationMessageFor(model => model.Password)
-                                    <label class="field-validation-error">@Html.DisplayFor(model => model.loginerror)</label>
-                                </div>
+
+                                <span class="w-100 text-danger"> @Html.ValidationMessage("accountInvalid") </span>
+                                
                                 <button type="submit" class="w-100 btn btn-login text-center">Login</button>
 
                             </div>

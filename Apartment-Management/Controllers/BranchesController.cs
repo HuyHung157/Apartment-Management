@@ -16,6 +16,7 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: Branches
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Branch.ToList());
