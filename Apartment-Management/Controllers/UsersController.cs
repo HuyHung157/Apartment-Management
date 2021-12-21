@@ -11,6 +11,7 @@ using Apartment_Management.Models;
 
 namespace Apartment_Management.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private AppContext db = new AppContext();

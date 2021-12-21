@@ -16,6 +16,7 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: Employees
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Employee.ToList());
@@ -51,6 +52,8 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.IsActive = true;
+                employee.IsArchive = false;
                 db.Employee.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
