@@ -47,9 +47,13 @@
             @Html.DisplayFor(modelItem => item.IsArchive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ApartmentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ApartmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ApartmentID })
+            <span>
+                <i class="fa fa-pencil-alt"></i>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ApartmentID }) |
+            </span>
+            
+            @Html.ActionLink("Details", "Details", new { id = item.ApartmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ApartmentID })
         </td>
     </tr>
 }
