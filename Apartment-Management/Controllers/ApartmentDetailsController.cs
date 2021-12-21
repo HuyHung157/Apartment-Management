@@ -16,6 +16,7 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: ApartmentDetails
+        [Authorize]
         public ActionResult Index()
         {
             var apartmentDetail = db.ApartmentDetail.Include(a => a.Apartment).Include(a => a.User);

@@ -166,6 +166,14 @@
     <Compile Include="Migrations\202112071633490_updatelogin.designer.cs">
       <DependentUpon>202112071633490_updatelogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112201830312_update employee table.cs" />
+    <Compile Include="Migrations\202112201830312_update employee table.designer.cs">
+      <DependentUpon>202112201830312_update employee table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112210755514_remove-field-loginerror.cs" />
+    <Compile Include="Migrations\202112210755514_remove-field-loginerror.designer.cs">
+      <DependentUpon>202112210755514_remove-field-loginerror.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentDetail.cs" />
@@ -301,6 +309,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112071633490_updatelogin.resx">
       <DependentUpon>202112071633490_updatelogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112201830312_update employee table.resx">
+      <DependentUpon>202112201830312_update employee table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112210755514_remove-field-loginerror.resx">
+      <DependentUpon>202112210755514_remove-field-loginerror.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
