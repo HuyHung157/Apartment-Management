@@ -26,7 +26,7 @@ namespace Apartment_Management.Controllers
             {
                 using (AppContext db = new AppContext())
                 {
-                    var obj = db.Employee.Where(a => a.Username.Equals(userlogin.Username) 
+                    var obj = db.Employee.Where(a => a.Username.Equals(userlogin.Username)
                                 && a.Password.Equals(userlogin.Password)).FirstOrDefault();
                     if (obj != null)
                     {

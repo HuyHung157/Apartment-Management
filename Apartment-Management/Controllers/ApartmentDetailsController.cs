@@ -24,6 +24,7 @@ namespace Apartment_Management.Controllers
         }
 
         // GET: ApartmentDetails/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
