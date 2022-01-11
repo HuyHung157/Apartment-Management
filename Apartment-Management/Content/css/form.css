@@ -1,0 +1,35 @@
+﻿.toggle {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+.toggle input[type="checkbox"] {
+        display: none;
+    }
+.toggle .slider {
+        background-color: #ccc;
+        cursor: pointer;
+        width: 70%;
+        height: 70%;
+        transition: .4s;
+        position: relative;
+        border-radius: 50px;
+    }
+.toggle .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 15px;
+        left: 4px;
+        position: absolute;
+        transition: .4s;
+        width: 20px;
+        border-radius: 50px;
+    }
+ .toggle input[type="checkbox"]:checked + .slider {
+        background-color: #918055;
+    }
+ .toggle input[type="checkbox"]:checked + .slider:before {
+            transform: translateX(18px);
+        }
