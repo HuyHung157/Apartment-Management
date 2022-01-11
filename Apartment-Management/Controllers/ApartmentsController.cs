@@ -59,7 +59,7 @@ namespace Apartment_Management.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BuildingID = new SelectList(db.Building, "BuildingID", "Description", apartment.BuildingID);
+            ViewBag.BuildingID = new SelectList(db.Building, "BuildingID", "BuildingName", apartment.BuildingID);
             return View(apartment);
         }
 

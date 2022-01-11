@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Quản lý căn hộ</h2>
+<div class="header-list">
+    <h2>Quản lý căn hộ</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+    <a class="btn-success btn-create" href="@Url.Action("Create", "Apartments")">
+        Tạo mới
+    </a>
+</div>
+
+<table  class="content-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Building.BuildingName)
@@ -20,13 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsArchive)
-        </th>
-        <th></th>
+        <th>Chức năng</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,20 +37,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsArchive)
-        </td>
-        <td>
-            <span>
+        <td class="list-action">
+            <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ApartmentID })">
                 <i class="fa fa-pencil-alt"></i>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ApartmentID }) |
-            </span>
-            
-            @Html.ActionLink("Details", "Details", new { id = item.ApartmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ApartmentID })
+            </a>
+
+            <a data-toggle="tooltip" title="Chi tiết" class="text-warning" href="@Url.Action("Details", new { id = item.ApartmentID })">
+                <i class="fa fa-eye"></i>
+            </a>
+
+            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ApartmentID })">
+                <i class="fa fa-trash-alt"></i>
+            </a>
+@*
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
         </td>
     </tr>
 }

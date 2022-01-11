@@ -11,6 +11,7 @@
     <link href="~/Content/css/sidebar.css" rel="stylesheet" type='text/css' />
     <link href="~/Content/css/main.css" rel="stylesheet" type='text/css' />
     <link href="~/Content/css/form.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/table.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="wrapper">
@@ -76,7 +77,10 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <span> Xin chào, <strong>  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest" ) </strong>  </span>
-                                <a href="@Url.Action("Signout", "Login")"><i class="mr-2 far fa-arrow-alt-circle-left"></i>Sign out</a>
+                                <a href="@Url.Action("Signout", "Login")">
+                                    <i class="mr-2 far fa-arrow-alt-circle-left"></i>
+                                    Đăng xuất
+                                </a>
                             }
 
                         </div>

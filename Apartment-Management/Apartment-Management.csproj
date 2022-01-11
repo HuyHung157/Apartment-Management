@@ -196,7 +196,7 @@
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\sidebar.css" />
-    <Content Include="Content\css\Table.css" />
+    <Content Include="Content\css\table.css" />
     <Content Include="Content\js\sidebar.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

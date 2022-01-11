@@ -1,35 +1,71 @@
 ﻿.toggle {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
+	display: inline-block;
+	height: 34px;
+	position: relative;
+	width: 60px;
 }
-.toggle input[type="checkbox"] {
-        display: none;
-    }
-.toggle .slider {
-        background-color: #ccc;
-        cursor: pointer;
-        width: 70%;
-        height: 70%;
-        transition: .4s;
-        position: relative;
-        border-radius: 50px;
-    }
-.toggle .slider:before {
-        background-color: #fff;
-        bottom: 4px;
-        content: "";
-        height: 15px;
-        left: 4px;
-        position: absolute;
-        transition: .4s;
-        width: 20px;
-        border-radius: 50px;
-    }
- .toggle input[type="checkbox"]:checked + .slider {
-        background-color: #918055;
-    }
- .toggle input[type="checkbox"]:checked + .slider:before {
-            transform: translateX(18px);
-        }
+
+	.toggle input[type="checkbox"] {
+		display: none;
+	}
+
+	.toggle .slider {
+		background-color: #ccc;
+		cursor: pointer;
+		width: 70%;
+		height: 70%;
+		transition: .4s;
+		position: relative;
+		border-radius: 50px;
+	}
+
+		.toggle .slider:before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 10%;
+			height: 15px;
+			width: 15px;
+			background-color: #fff;
+			transition: 0.4s all ease-in-out;
+			border-radius: 50px;
+		}
+
+	.toggle input[type="checkbox"]:checked + .slider {
+		background-color: #918055;
+		transition: 0.4s all ease-in-out;
+	}
+
+		.toggle input[type="checkbox"]:checked + .slider:before {
+			left: unset;
+			right: 10%;
+		}
+
+.btn-submit {
+	border: none !important;
+	outline: none !important;
+	padding: 8px;
+	border-radius: 6px;
+}
+
+.btn-return{
+	height: 30px;
+	width: 30px;
+	background: red;
+	border-radius: 50%;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header-form {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.header-form > * {
+	margin-right: 10px;
+}
