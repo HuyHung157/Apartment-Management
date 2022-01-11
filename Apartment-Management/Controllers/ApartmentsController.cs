@@ -41,7 +41,7 @@ namespace Apartment_Management.Controllers
         // GET: Apartments/Create
         public ActionResult Create()
         {
-            ViewBag.BuildingID = new SelectList(db.Building, "BuildingID", "Description");
+            ViewBag.BuildingID = new SelectList(db.Building, "BuildingID", "BuildingName");
             return View();
         }
 
