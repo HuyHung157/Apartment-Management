@@ -4,8 +4,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Chi tiết tòa nhà</h2>
-
+<div class="header-form">
+    <a class="btn-return" href="@Url.Action("Index", "Apartments")" style="background-color: #918055">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+    <h2>Chỉnh sửa Tòa Nhà</h2>
+</div>
 
 @using (Html.BeginForm())
 {
@@ -77,10 +81,6 @@
        
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

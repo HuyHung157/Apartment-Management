@@ -4,7 +4,13 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Chỉnh Sửa Căn Hộ </h2>
+<div class="header-form">
+    <a class="btn-return" href="@Url.Action("Index", "Apartments")" style="background-color: #918055">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+
+    <h2>Chỉnh Sửa Căn Hộ </h2>
+</div>
 
 
 @using (Html.BeginForm())
@@ -18,7 +24,7 @@
         @Html.HiddenFor(model => model.ApartmentID)
     <div class="row">
         <div class="form-group col-md-6">
-            <label class="control-label"> Tòa Nhà</label>
+            <label class="control-label">Tòa Nhà</label>
             @*@Html.LabelFor(model => model.BuildingID, "BuildingID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("BuildingID", null, htmlAttributes: new { @class = "form-control" })
@@ -87,10 +93,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
