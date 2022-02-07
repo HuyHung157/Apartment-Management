@@ -11,6 +11,7 @@ using Apartment_Management.Models;
 
 namespace Apartment_Management.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private AppContext db = new AppContext();
@@ -52,6 +53,7 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
                 employee.IsActive = true;
                 employee.IsArchive = false;
                 db.Employee.Add(employee);
@@ -86,6 +88,7 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

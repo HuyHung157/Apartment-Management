@@ -26,11 +26,10 @@ namespace Apartment_Management.Controllers
             {
                 using (AppContext db = new AppContext())
                 {
-                    var obj = db.Employee.Where(a => a.Username.Equals(userlogin.Username)
-                                && a.Password.Equals(userlogin.Password)).FirstOrDefault();
-                    if (obj != null)
+                    var account = checkAccount(userlogin.Username, userlogin.Password);
+                    if (account != null)
                     {
-                        FormsAuthentication.SetAuthCookie(obj.Username, false);
+                        FormsAuthentication.SetAuthCookie(account.Username, false);
                         if(Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") 
                             && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                         {
@@ -57,6 +56,28 @@ namespace Apartment_Management.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
+        }
+
+        private Employee checkAccount(string username, string password)
+        {
+            
+            var account = db.Employee.SingleOrDefault(a => a.Username.Equals(username));
+            if (account != null)
+            {
+                //TODO: remove check account by equal function
+                var obj = db.Employee.Where(a => a.Username.Equals(username)
+                               && a.Password.Equals(password)).FirstOrDefault();
+                if(obj == null)
+                {
+                    if (BCrypt.Net.BCrypt.Verify(password, account.Password))
+                    {
+                        return account;
+                    }
+                    return null;
+                }
+                return obj;
+            }
+            return null;
         }
 
     }
