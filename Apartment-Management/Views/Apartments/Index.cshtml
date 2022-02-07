@@ -7,7 +7,7 @@
 <div class="header-list">
     <h2>Quản lý căn hộ</h2>
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "Apartments")">
+    <a class="btn-success btn-create" href="@Url.Action("Create", "Apartments")" style="background-color: #918055">
         Tạo mới
     </a>
 </div>
@@ -23,7 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>Chức năng</th>
+        <th>Chức năng </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -42,7 +42,7 @@
                 <i class="fa fa-pencil-alt"></i>
             </a>
 
-            <a data-toggle="tooltip" title="Chi tiết" class="text-warning" href="@Url.Action("Details", new { id = item.ApartmentID })">
+            <a data-toggle="tooltip" title="Chi tiết" class="text-warning" href="@Url.Action("Edit", new { id = item.ApartmentID })">
                 <i class="fa fa-eye"></i>
             </a>
 

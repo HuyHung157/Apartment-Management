@@ -3,21 +3,13 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="header-list">
+    <h2>Quản lý chi nhánh</h2>
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/css/Table.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-        <h1 class="title">Quản lý chi nhánh</h1>
-
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+    <a class="btn-success btn-create" href="@Url.Action("Create", "Branches")" style="background-color: #918055">
+        Tạo mới
+    </a>
+</div>
         <table class="content-table">
             <tr>
                 <th>
@@ -30,42 +22,38 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
+                    Chức Năng
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsArchive)
-                </th>
-                <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
+        <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BranchName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsArchive)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.BranchID }) |
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="list-action">
+                <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.BranchID })">
+                    <i class="fa fa-pencil-alt"></i>
+                </a>
 
-                        @Html.ActionLink("Details", "Details", new { id = item.BranchID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.BranchID })
-                    </td>
-                </tr>
+                <a data-toggle="tooltip" title="Chi tiết" class="text-warning" href="@Url.Action("Edit", new { id = item.BranchID })">
+                    <i class="fa fa-eye"></i>
+                </a>
+
+                <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BranchID })">
+                    <i class="fa fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
             }
 
         </table>
-</body>
-</html>
+
