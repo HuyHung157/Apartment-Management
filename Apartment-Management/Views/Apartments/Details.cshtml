@@ -1,12 +1,11 @@
 ﻿@model Apartment_Management.Models.Apartment
-
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
-<div>
+@*<div>
     <h4>Apartment</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -55,4 +54,40 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ApartmentID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ApartmentID)
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div>
+                @Html.DisplayNameFor(model => model.ApartmentName)
+                @Html.EditorFor(model => model.ApartmentName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApartmentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div>
+                @Html.DisplayNameFor(model => model.Building.BuildingName)
+                @Html.EditorFor(model => model.Building.BuildingName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Building.BuildingName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label"> Ghi chú </label>
+        <div class="w-100">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApartmentID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+}

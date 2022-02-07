@@ -3,13 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="header-list">
+    <h2>Quản lý tòa nhà</h2>
 
-<h2>Quản lý tòa nhà</h2>
+    <a class="btn-success btn-create" href="@Url.Action("Create", "Buildings")" style="background-color: #918055">
+        Tạo mới
+    </a>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="content-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Branch.BranchName)
@@ -21,12 +23,8 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsActive)
+            Chức Năng
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsArchive)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,16 +38,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsArchive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BuildingID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BuildingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BuildingID })
+        <td class="list-action">
+            <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.BuildingID })">
+                <i class="fa fa-pencil-alt"></i>
+            </a>
+
+            <a data-toggle="tooltip" title="Chi tiết" class="text-warning" href="@Url.Action("Edit", new { id = item.BuildingID })">
+                <i class="fa fa-eye"></i>
+            </a>
+
+            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BuildingID })">
+                <i class="fa fa-trash-alt"></i>
+            </a>
         </td>
     </tr>
 }
