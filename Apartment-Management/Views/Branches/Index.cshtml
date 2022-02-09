@@ -44,7 +44,8 @@
                     <i class="fa fa-pencil-alt"></i>
                 </a>
 
-                <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BranchID })">
+                <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BranchID })" 
+                  onclick="return confirm('Bạn chắc chắn muốn xóa chi nhánh này?')">
                     <i class="fa fa-trash-alt"></i>
                 </a>
             </td>

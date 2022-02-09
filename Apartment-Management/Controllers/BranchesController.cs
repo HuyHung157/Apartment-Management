@@ -109,7 +109,9 @@ namespace Apartment_Management.Controllers
             {
                 return HttpNotFound();
             }
-            return View(branch);
+            db.Branch.Remove(branch);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Branches/Delete/5
