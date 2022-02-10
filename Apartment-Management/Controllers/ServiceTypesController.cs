@@ -52,6 +52,8 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                serviceType.IsActive = true;
+                serviceType.IsArchive = false;
                 db.ServiceTypes.Add(serviceType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +84,10 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ServiceTypeID,ServiceTypeName,UnitPrice,Unit,Year,Month,Description,IsActive,IsArchive")] ServiceType serviceType)
         {
+            if (serviceType.IsActive == false)
+            {
+                serviceType.IsArchive = true;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(serviceType).State = EntityState.Modified;

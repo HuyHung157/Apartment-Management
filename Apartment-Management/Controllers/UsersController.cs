@@ -40,7 +40,9 @@ namespace Apartment_Management.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            return View();
+            User user = new User();
+            user.IsActive = true;
+            return View(user);
         }
 
         // POST: Users/Create
@@ -50,6 +52,8 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,ApartmentDetailID,FirstName,LastName,Dob,PhoneNumber,IdCard,Address,Description,IsActive,IsArchive")] User user)
         {
+            user.IsActive = true;
+            user.IsArchive = false;
             if (ModelState.IsValid)
             {
                 db.User.Add(user);
@@ -82,6 +86,10 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,ApartmentDetailID,FirstName,LastName,Dob,PhoneNumber,IdCard,Address,Description,IsActive,IsArchive")] User user)
         {
+            if(user.IsActive ==  false)
+            {
+                user.IsArchive = true;
+            }    
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;

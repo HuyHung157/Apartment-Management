@@ -89,26 +89,15 @@
             </div>
         </div>
     </div>
-    <div class=" row">
+    <div class="row">
         <div class="form-group col-md-6">
-            <label class="control-label">IsActive</label>
-            <div>
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            <label class="control-label"> Trạng thái </label>
+            <label class="switch">
+                @Html.CheckBoxFor(model => model.IsActive)
+                <span class="slider round"> </span>
+            </label>
         </div>
 
-        <div class="form-group col-md-6">
-            <label class="control-label">IsArchive</label>
-            <div>
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsArchive)
-                    @Html.ValidationMessageFor(model => model.IsArchive, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-12 text-right">

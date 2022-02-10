@@ -54,6 +54,8 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                building.IsActive = true;
+                building.IsArchive = false;
                 db.Building.Add(building);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,6 +88,10 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BuildingID,BranchID,BuildingName,Description,IsActive,IsArchive")] Building building)
         {
+            if (building.IsActive == false)
+            {
+                building.IsArchive = true;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(building).State = EntityState.Modified;

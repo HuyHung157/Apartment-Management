@@ -92,14 +92,12 @@
             <div class="form-group col-md-6">
                 <label class="control-label "> Trạng thái </label>
                 <div>
-                    <label class="toggle" for="toggle">
-                        <input disabled checked="checked" type="checkbox" id="toggle">
-                        <span class="slider"></span>
-                        @Html.EditorFor(model => model.IsActive)
+                    <label class="switch">
+                        @Html.CheckBoxFor(model => model.IsActive, htmlAttributes: new { @checked = true, @disabled = true })
+                        <span class="slider round"> </span>
                     </label>
                 </div>
             </div>
-
         </div>
        
     <div class="form-group">

@@ -53,6 +53,7 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
                 employee.IsActive = true;
                 employee.IsArchive = false;
@@ -86,6 +87,10 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmployeeID,Role,Username,Password,FirstName,LastName,Dob,PhoneNumber,IdCard,Address,Description,IsActive,IsArchive")] Employee employee)
         {
+            if (employee.IsActive == false)
+            {
+                employee.IsArchive = true;
+            }
             if (ModelState.IsValid)
             {
                 employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
