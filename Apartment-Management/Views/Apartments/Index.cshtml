@@ -42,12 +42,12 @@
                 <i class="fa fa-pencil-alt"></i>
             </a>
 
-            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ApartmentID })">
+            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ApartmentID })"
+               onclick="return confirm('Bạn chắc chắn muốn xóa căn hộ này?')">
                 <i class="fa fa-trash-alt"></i>
             </a>
-@*
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
+            @*@Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
         </td>
     </tr>
 }

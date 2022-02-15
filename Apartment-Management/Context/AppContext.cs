@@ -13,11 +13,11 @@ namespace Apartment_Management.Context
         public DbSet<Branch> Branch { get; set; }
         public DbSet<Building> Building { get; set; }
         public DbSet<ApartmentDetail> ApartmentDetail { get; set; }
-        public DbSet<ServiceType> ServiceTypes { get; set; }
+        public DbSet<ServiceType> ServiceType { get; set; }
         public DbSet<BuildingEmployees> BuildingEmployees { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<ServiceDetail> ServiceDetails { get; set; }
+        public DbSet<ServiceDetail> ServiceDetail { get; set; }
 
     }
 }

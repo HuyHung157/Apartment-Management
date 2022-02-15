@@ -113,7 +113,9 @@ namespace Apartment_Management.Controllers
             {
                 return HttpNotFound();
             }
-            return View(apartmentDetail);
+            db.ApartmentDetail.Remove(apartmentDetail);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: ApartmentDetails/Delete/5

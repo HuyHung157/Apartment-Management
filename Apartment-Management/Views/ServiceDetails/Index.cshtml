@@ -14,15 +14,10 @@
 <table class="content-table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Apartment.ApartmentName)
-        </th>
-        <th>
-            <label class="control-label">Loại dịch vụ</label>
-            @*@Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)*@
-        </th>
-        <th>
-            <label class="control-label">Trạng thái</label>
-            @*@Html.DisplayNameFor(model => model.Status)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Quantity)
@@ -30,21 +25,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.Year)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Month)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Status)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsArchive)
-        </th>*@
         <th>Chức năng</th>
     </tr>
 
@@ -85,7 +74,8 @@
             <i class="fa fa-pencil-alt"></i>
         </a>
 
-        <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })">
+        <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })"
+           onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
             <i class="fa fa-trash-alt"></i>
         </a>
     </td>

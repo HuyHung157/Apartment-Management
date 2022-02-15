@@ -19,7 +19,7 @@ namespace Apartment_Management.Controllers
         // GET: ServiceDetails
         public ActionResult Index()
         {
-            var serviceDetails = db.ServiceDetails.Include(s => s.Apartment).Include(s => s.ServiceType);
+            var serviceDetails = db.ServiceDetail.Include(s => s.Apartment).Include(s => s.ServiceType);
             return View(serviceDetails.ToList());
         }
 
@@ -30,7 +30,7 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceDetail serviceDetail = db.ServiceDetails.Find(id);
+            ServiceDetail serviceDetail = db.ServiceDetail.Find(id);
             if (serviceDetail == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace Apartment_Management.Controllers
         public ActionResult Create()
         {
             ViewBag.ApartmentID = new SelectList(db.Apartment, "ApartmentID", "ApartmentName");
-            ViewBag.ServiceTypeID = new SelectList(db.ServiceTypes, "ServiceTypeID", "ServiceTypeName");
+            ViewBag.ServiceTypeID = new SelectList(db.ServiceType, "ServiceTypeID", "ServiceTypeName");
             return View();
         }
 
@@ -57,13 +57,13 @@ namespace Apartment_Management.Controllers
             {
                 serviceDetail.IsActive = true;
                 serviceDetail.IsArchive = false;
-                db.ServiceDetails.Add(serviceDetail);
+                db.ServiceDetail.Add(serviceDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.ApartmentID = new SelectList(db.Apartment, "ApartmentID", "ApartmentName", serviceDetail.ApartmentID);
-            ViewBag.ServiceTypeID = new SelectList(db.ServiceTypes, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
+            ViewBag.ServiceTypeID = new SelectList(db.ServiceType, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
             return View(serviceDetail);
         }
 
@@ -74,13 +74,13 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceDetail serviceDetail = db.ServiceDetails.Find(id);
+            ServiceDetail serviceDetail = db.ServiceDetail.Find(id);
             if (serviceDetail == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ApartmentID = new SelectList(db.Apartment, "ApartmentID", "ApartmentName", serviceDetail.ApartmentID);
-            ViewBag.ServiceTypeID = new SelectList(db.ServiceTypes, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
+            ViewBag.ServiceTypeID = new SelectList(db.ServiceType, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
             return View(serviceDetail);
         }
 
@@ -102,7 +102,7 @@ namespace Apartment_Management.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ApartmentID = new SelectList(db.Apartment, "ApartmentID", "ApartmentName", serviceDetail.ApartmentID);
-            ViewBag.ServiceTypeID = new SelectList(db.ServiceTypes, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
+            ViewBag.ServiceTypeID = new SelectList(db.ServiceType, "ServiceTypeID", "ServiceTypeName", serviceDetail.ServiceTypeID);
             return View(serviceDetail);
         }
 
@@ -113,12 +113,14 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceDetail serviceDetail = db.ServiceDetails.Find(id);
+            ServiceDetail serviceDetail = db.ServiceDetail.Find(id);
             if (serviceDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceDetail);
+            db.ServiceDetail.Remove(serviceDetail);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: ServiceDetails/Delete/5
@@ -126,8 +128,8 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServiceDetail serviceDetail = db.ServiceDetails.Find(id);
-            db.ServiceDetails.Remove(serviceDetail);
+            ServiceDetail serviceDetail = db.ServiceDetail.Find(id);
+            db.ServiceDetail.Remove(serviceDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

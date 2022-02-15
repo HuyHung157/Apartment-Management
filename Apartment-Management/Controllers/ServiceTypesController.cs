@@ -19,7 +19,7 @@ namespace Apartment_Management.Controllers
         // GET: ServiceTypes
         public ActionResult Index()
         {
-            return View(db.ServiceTypes.ToList());
+            return View(db.ServiceType.ToList());
         }
 
         // GET: ServiceTypes/Details/5
@@ -29,7 +29,7 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
+            ServiceType serviceType = db.ServiceType.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
@@ -54,7 +54,7 @@ namespace Apartment_Management.Controllers
             {
                 serviceType.IsActive = true;
                 serviceType.IsArchive = false;
-                db.ServiceTypes.Add(serviceType);
+                db.ServiceType.Add(serviceType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
+            ServiceType serviceType = db.ServiceType.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
@@ -104,12 +104,14 @@ namespace Apartment_Management.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
+            ServiceType serviceType = db.ServiceType.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            db.ServiceType.Remove(serviceType);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: ServiceTypes/Delete/5
@@ -117,8 +119,8 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            db.ServiceTypes.Remove(serviceType);
+            ServiceType serviceType = db.ServiceType.Find(id);
+            db.ServiceType.Remove(serviceType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

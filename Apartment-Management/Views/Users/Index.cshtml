@@ -22,7 +22,7 @@
             @*@Html.DisplayNameFor(model => model.ApartmentDetailID)*@
         </th>
         <th>
-            <label class="control-label col-md-7"> Họ và tên đệm</label>
+            <label class="control-label col-md-7"> Họ </label>
             @* @Html.DisplayNameFor(model => model.FirstName)*@
         </th>
         <th>
@@ -93,18 +93,19 @@
         @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
     </td>*@
-    <td class="list-action">
-        <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.UserID })">
-            <i class="fa fa-pencil-alt"></i>
-        </a>
+<td class="list-action">
+    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.UserID })">
+        <i class="fa fa-pencil-alt"></i>
+    </a>
 
-        <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id =item.UserID })">
-            <i class="fa fa-trash-alt"></i>
-        </a>
-        @*
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
-    </td>
+    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.UserID })"
+       onclick="return confirm('Bạn chắc chắn muốn xóa khách hàng này?')">
+        <i class="fa fa-trash-alt"></i>
+    </a>
+    @*
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
+</td>
 </tr>
 }
 

@@ -65,9 +65,13 @@
             @Html.DisplayFor(modelItem => item.IsArchive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ApartmentDetailID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ApartmentDetailID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ApartmentDetailID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ApartmentDetailID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ApartmentDetailID }) |
+
+            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ApartmentDetailID })"
+               onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                <i class="fa fa-trash-alt"></i>
+            </a>
         </td>
     </tr>
 }
