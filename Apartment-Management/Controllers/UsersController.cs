@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Apartment_Management.Context;
 using Apartment_Management.Models;
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text;
+
 
 namespace Apartment_Management.Controllers
 {
@@ -132,6 +137,24 @@ namespace Apartment_Management.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void ExportToCSV()
+        {
+            StringWriter strw = new StringWriter();
+            strw.WriteLine("\"UserID\",\"Chi tiết căn hộ\",\"Họ và tên đệm\",\"Tên\",\"Ngày tháng năm sinh\",\"Số điện thoại\",\"CCCD-CMND\",\"Địa chỉ\",\"Ghi chú\",\"IsActive\",\"IsArchive\"");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", string.Format("attachment;filename=Nhanvien_{0}.csv", DateTime.Now.ToString("dd/MM/yyyy-H:mm")));
+            Response.ContentType = "text/csv";
+            Response.ContentEncoding = Encoding.UTF8;
+            Response.BinaryWrite(Encoding.UTF8.GetPreamble());
+            var listproduct = db.User.OrderBy(x => x.UserID);
+            foreach (var p in listproduct)
+            {
+                strw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",
+                   p.UserID,p.ApartmentDetailID,p.FirstName,p.LastName,p.Dob,p.PhoneNumber,p.IdCard,p.Address,p.Description,p.IsActive,p.IsArchive));
+            }
+            Response.Write(strw.ToString());
+            Response.End();
         }
     }
 }

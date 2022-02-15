@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using Apartment_Management.Context;
 using Apartment_Management.Models;
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text;
 
 namespace Apartment_Management.Controllers
 {
@@ -133,5 +137,45 @@ namespace Apartment_Management.Controllers
             }
             base.Dispose(disposing);
         }
+        public void ExportToCSV()
+        {
+            StringWriter strw = new StringWriter();
+            strw.WriteLine("\"BranchID\",\"Tên chi nhánh\",\"Địa chỉ\",\"Ghi chú\",\"IsActive\",\"IsArchive\"");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", string.Format("attachment;filename=Chinhanh_{0}.csv", DateTime.Now.ToString("dd/MM/yyyy-H:mm")));
+            Response.ContentType = "text/csv";
+            Response.ContentEncoding = Encoding.UTF8;
+            Response.BinaryWrite(Encoding.UTF8.GetPreamble());
+            var listproduct = db.Branch.OrderBy(x => x.BranchID);
+            foreach (var p in listproduct)
+            {
+                strw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\"", 
+                    p.BranchID, p.BranchName, p.Address, p.Description, p.IsActive, p.IsArchive));
+            }
+            Response.Write(strw.ToString());
+            Response.End();
+        }
+        /*public void ExportToExcel()
+        {
+            var gv = new GridView();
+            gv.DataSource = db.Branch.OrderBy(x => x.BranchID).ToList();
+            gv.DataBind();
+
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", string.Format("attachment;filename=Chinhanh{0}.xls", DateTime.Now));
+            Response.ContentType = "application/excel";
+            Response.Charset = "utf-8";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            htw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+        }*/
     }
 }

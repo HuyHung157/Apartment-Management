@@ -5,10 +5,14 @@
 }
 <div class="header-list">
     <h2>Quản lý nhân viên</h2>
-
-    <a class="btn-success btn-create" href="@Url.Action("Create", "Employees")" style="background-color: #918055">
-        Tạo mới
-    </a>
+    <div>
+        <a class="btn-success btn-create" href="@Url.Action("Create", "Employees")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-success btn-create" href="@Url.Action("ExportToCSV", "Employees")" style="background-color: #918055 ">
+            Export File
+        </a>
+    </div>
 </div>
 @*<h2>Quản lý nhân viên</h2>
 
