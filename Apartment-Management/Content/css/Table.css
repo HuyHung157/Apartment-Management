@@ -12,7 +12,7 @@
     text-align: left;
 }
 .content-table th,.content-table td {
-        padding: 25px 60px;
+        padding: 12px 30px;
     }
 .content-table  tr {
         border-bottom: 1px solid #dddddd;
@@ -44,3 +44,17 @@
   .list-action i {
     font-size: 18px;
   }
+
+ th:hover a{
+     text-decoration: underline;
+ }
+
+.pagination-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+    .pagination-group span {
+        margin-right: 8px;
+    }

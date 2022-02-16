@@ -17,9 +17,17 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: ServiceTypes
-        public ActionResult Index()
+        public ActionResult Index(string searchString = "")
         {
-            return View(db.ServiceType.ToList());
+            if (searchString != "")
+            {
+                var serviceTypes = db.ServiceDetail.Where(x => x.ServiceType.ServiceTypeName.ToUpper().Contains(searchString.ToUpper())); ;
+                return View(serviceTypes.ToList());
+            }
+            else
+            {
+                return View(db.ServiceType.ToList());
+            }
         }
 
         // GET: ServiceTypes/Details/5

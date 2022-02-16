@@ -1,4 +1,9 @@
-﻿.switch {
+﻿/*common*/
+.form-group {
+    margin-bottom: unset;
+}
+
+.switch {
     position: relative;
     display: block;
     width: 60px;

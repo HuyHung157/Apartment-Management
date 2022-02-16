@@ -17,9 +17,17 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(string searchString = "")
         {
-            return View(db.User.ToList());
+            if (searchString != "")
+            {
+                var users = db.User.Where(x => x.FirstName.ToUpper().Contains(searchString.ToUpper())); ;
+                return View(users.ToList());
+            }
+            else
+            {
+                return View(db.User.ToList());
+            }
         }
 
         // GET: Users/Details/5

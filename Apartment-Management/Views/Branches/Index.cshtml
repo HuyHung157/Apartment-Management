@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Apartment_Management.Models.Branch>
+﻿@model PagedList.IPagedList<Apartment_Management.Models.Branch>
+@using PagedList.Mvc;
+
+<link rel="stylesheet" href="~/Content/PagedList.css"/>
 
 @{
     ViewBag.Title = "Index";
@@ -6,20 +9,29 @@
 <div class="header-list">
     <h2>Quản lý chi nhánh</h2>
 
+    @using (Html.BeginForm())
+    {
+        <div class="form-group form-inline">
+            @Html.TextBox("searchString", "", new { @class = "form-control" })
+            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+        </div>
+    }
     <a class="btn-success btn-create" href="@Url.Action("Create", "Branches")" style="background-color: #918055">
         Tạo mới
     </a>
 </div>
         <table class="content-table">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BranchName)
+                <th scope="col">
+                    @*@Html.DisplayNameFor(model => model.BranchName)*@
+                    @Html.ActionLink("Tên chi nhánh", "Index", new { sortOrder = ViewBag.SortByName })
+                </th>
+                <th scope="col">
+                    @*@Html.DisplayNameFor(model => model.Address)*@
+                    @Html.ActionLink("Địa chỉ", "Index", new { sortOrder = ViewBag.SortByAddress })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    Ghi chú
                 </th>
                 <th>
                     Chức Năng
@@ -53,4 +65,9 @@
             }
 
         </table>
+
+        <div class="pagination-group">
+            <span>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</span>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+        </div>
 

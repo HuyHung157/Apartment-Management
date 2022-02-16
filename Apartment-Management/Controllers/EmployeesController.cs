@@ -18,9 +18,17 @@ namespace Apartment_Management.Controllers
 
         // GET: Employees
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string searchString = "")
         {
-            return View(db.Employee.ToList());
+            if (searchString != "")
+            {
+                var employee = db.Employee.Where(x => x.FirstName.ToUpper().Contains(searchString.ToUpper())); ;
+                return View(employee.ToList());
+            }
+            else
+            {
+                return View(db.Employee.ToList());
+            }
         }
 
         // GET: Employees/Details/5

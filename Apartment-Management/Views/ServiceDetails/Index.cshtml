@@ -7,6 +7,14 @@
 <div class="header-list">
     <h2>Quản lý hóa đơn</h2>
 
+    @using (Html.BeginForm())
+    {
+        <div class="form-group form-inline">
+            @Html.TextBox("searchString", "", new { @class = "form-control" })
+            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+        </div>
+    }
+
     <a class="btn-success btn-create" href="@Url.Action("Create", "ServiceDetails")" style="background-color: #918055">
         Tạo mới
     </a>

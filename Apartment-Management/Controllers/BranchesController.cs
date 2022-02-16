@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Apartment_Management.Context;
+using Apartment_Management.Models;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Apartment_Management.Context;
-using Apartment_Management.Models;
+using PagedList;
 
 namespace Apartment_Management.Controllers
 {
@@ -17,9 +16,42 @@ namespace Apartment_Management.Controllers
 
         // GET: Branches
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string sortOrder, string searchString = "")
         {
-            return View(db.Branch.ToList());
+
+            ViewBag.SortByName = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.SortByAddress = (sortOrder == "address" ? "address_desc" : "address");
+            var branch = db.Branch.Include(b => b.Buildings);
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    branch = branch.OrderByDescending(s => s.BranchName);
+                    break;
+                case "address_desc":
+                    branch = branch.OrderByDescending(s => s.Address);
+                    break;
+                case "address":
+                    branch = branch.OrderBy(s => s.Address);
+                    break;
+                default://mặc định sắp xếp theo tên sản phẩm
+                    branch = branch.OrderBy(s => s.BranchName);
+                    break;
+            }
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
+
+            if (searchString != "")
+            {
+                var branches = branch.Where(x => x.BranchName.ToUpper().Contains(searchString.ToUpper()));
+                return View(branches.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                searchString = currentFilter;
+                ViewBag.CurrentFilter = currentFilter;
+                return View(branch.ToPagedList(pageNumber, pageSize));
+            }
+            
         }
 
         // GET: Branches/Details/5

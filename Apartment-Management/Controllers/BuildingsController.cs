@@ -17,10 +17,18 @@ namespace Apartment_Management.Controllers
 
         // GET: Buildings
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string searchString = "")
         {
+            if (searchString != "")
+            {
+                var buildings = db.Building.Where(x => x.BuildingName.ToUpper().Contains(searchString.ToUpper()));
+                return View(buildings.ToList());
+            }
+            else
+            {
             var building = db.Building.Include(b => b.Branch);
             return View(building.ToList());
+            }
         }
 
         // GET: Buildings/Details/5

@@ -27,22 +27,18 @@ namespace Apartment_Management.Controllers
                 using (AppContext db = new AppContext())
                 {
                     var account = checkAccount(userlogin.Username, userlogin.Password);
-                    if (account != null)
-                    {
+                    if (account != null){
                         FormsAuthentication.SetAuthCookie(account.Username, false);
-                        if(Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") 
-                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                        {
-                            return RedirectToAction("Index", returnUrl.Replace("/",""));
+                        /*if(Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") 
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\")){
+                            return RedirectToAction("Index", returnUrl.Replace("/", ""));
                         }
-                        else
-                        {
+                        else{
                             return RedirectToAction("Index", "Home");
-                        }
-                       
+                        }*/
+                        return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
+                    else{
                         ModelState.AddModelError("accountInvalid", "Username or password invalid");
                         return View("Index");
                     }
