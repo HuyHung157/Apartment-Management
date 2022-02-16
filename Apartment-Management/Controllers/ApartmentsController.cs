@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using Apartment_Management.Context;
 using Apartment_Management.Models;
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text;
 
 namespace Apartment_Management.Controllers
 {
@@ -146,6 +150,24 @@ namespace Apartment_Management.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void ExportToCSV()
+        {
+            StringWriter strw = new StringWriter();
+            strw.WriteLine("\"ApartmentID\",\"BuildingID\",\"Tên căn hộ\",\"Ghi chú\",\"IsActive\",\"IsArchive\"");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", string.Format("attachment;filename=Canho_{0}.csv", DateTime.Now.ToString("dd/MM/yyyy-H:mm")));
+            Response.ContentType = "text/csv";
+            Response.ContentEncoding = Encoding.UTF8;
+            Response.BinaryWrite(Encoding.UTF8.GetPreamble());
+            var listproduct = db.Apartment.OrderBy(x => x.ApartmentID);
+            foreach (var p in listproduct)
+            {
+                strw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\"",
+                   p.ApartmentID, p.BuildingID, p.ApartmentName,p.Description, p.IsActive, p.IsArchive));
+            }
+            Response.Write(strw.ToString());
+            Response.End();
         }
     }
 }
