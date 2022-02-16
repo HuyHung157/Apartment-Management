@@ -7,90 +7,94 @@
 <div class="header-list">
     <h2>Quản lý hóa đơn</h2>
 
-    @using (Html.BeginForm())
-    {
-        <div class="form-group form-inline">
-            @Html.TextBox("searchString", "", new { @class = "form-control" })
-            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
-        </div>
-    }
+    <div class="action-group">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inline">
+                @Html.TextBox("searchString", "", new { @class = "form-control" })
+                <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+            </div>
+        }
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "ServiceDetails")" style="background-color: #918055">
-        Tạo mới
-    </a>
-    <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "ServiceDetails")" >
+        <a class="btn-success btn-create" href="@Url.Action("Create", "ServiceDetails")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "ServiceDetails")">
             Export File
-    </a>
+        </a>
+    </div>
 </div>
-<table class="content-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apartment.ApartmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>Chức năng</th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apartment.ApartmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Month)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsArchive)
-        </td>*@
-    <td class="list-action">
-        <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceDetailID })">
-            <i class="fa fa-pencil-alt"></i>
-        </a>
+    <table class="content-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apartment.ApartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Chức năng</th>
+        </tr>
 
-        <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })"
-           onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
-            <i class="fa fa-trash-alt"></i>
-        </a>
-    </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apartment.ApartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsArchive)
+                    </td>*@
+                <td class="list-action">
+                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceDetailID })">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
 
-</table>
+                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>

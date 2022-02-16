@@ -7,20 +7,22 @@
 <div class="header-list">
     <h2>Quản lý căn hộ</h2>
 
-    @using (Html.BeginForm())
-    {
-        <div class="form-group form-inline">
-            @Html.TextBox("searchString", "", new { @class = "form-control" })
-            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
-        </div>
-    }
+    <div class="action-group">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inline">
+                @Html.TextBox("searchString", "", new { @class = "form-control" })
+                <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+            </div>
+        }
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "Apartments")" style="background-color: #918055">
-        Tạo mới
-    </a>
-    <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Apartments")">
-        Export File
-    </a>
+        <a class="btn-success btn-create" href="@Url.Action("Create", "Apartments")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Apartments")">
+            Export File
+        </a>
+    </div>
 </div>
 
 <table  class="content-table">

@@ -163,7 +163,7 @@ namespace Apartment_Management.Controllers
             Response.ContentType = "text/csv";
             Response.ContentEncoding = Encoding.UTF8;
             Response.BinaryWrite(Encoding.UTF8.GetPreamble());
-            var listproduct = db.ServiceDetails.OrderBy(x => x.ServiceDetailID);
+            var listproduct = db.ServiceDetail.OrderBy(x => x.ServiceDetailID);
             foreach (var p in listproduct)
             {
                 strw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",

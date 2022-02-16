@@ -6,113 +6,112 @@
 <div class="header-list">
     <h2>Quản lý nhân viên</h2>
 
-    @using (Html.BeginForm())
-    {
-        <div class="form-group form-inline">
-            @Html.TextBox("searchString", "", new { @class = "form-control" })
-            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
-        </div>
-    }
+    <div class="action-group">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inline">
+                @Html.TextBox("searchString", "", new { @class = "form-control" })
+                <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+            </div>
+        }
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "Employees")" style="background-color: #918055">
-        Tạo mới
-    </a>
-    <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Employees")" >
+        <a class="btn-success btn-create" href="@Url.Action("Create", "Employees")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Employees")">
             Export File
-    </a>
+        </a>
+    </div>
 </div>
-@*<h2>Quản lý nhân viên</h2>
 
-<p>
-    @Htm*@<!--l.ActionLink("Create New", "Create")
-</p>-->
-<table class="content-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            <label class="control-label">Họ và tên đệm</label>
-            @*@Html.DisplayNameFor(model => model.FirstName)*@
-        </th>
-        <th>
-            <label class="control-label">Tên</label>
-            @*@Html.DisplayNameFor(model => model.LastName)*@
-        </th>
-        <th>
-            <label class="control-label">Ngày sinh</label>
-            @*@Html.DisplayNameFor(model => model.Dob)*@
-        </th>
-        <!--<th>
-            <label class="control-label">SĐT</label>-->
+    <table class="content-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                <label class="control-label">Họ và tên đệm</label>
+                @*@Html.DisplayNameFor(model => model.FirstName)*@
+            </th>
+            <th>
+                <label class="control-label">Tên</label>
+                @*@Html.DisplayNameFor(model => model.LastName)*@
+            </th>
+            <th>
+                <label class="control-label">Ngày sinh</label>
+                @*@Html.DisplayNameFor(model => model.Dob)*@
+            </th>
+            <!--<th>
+                <label class="control-label">SĐT</label>-->
             @*@Html.DisplayNameFor(model => model.PhoneNumber)*@
-        <!--</th>-->
-        <!--<th>
-            <label class="control-label">CMND\CCCD</label>-->
+            <!--</th>-->
+            <!--<th>
+                <label class="control-label">CMND\CCCD</label>-->
             @*@Html.DisplayNameFor(model => model.IdCard)*@
-        <!--</th>-->
-        <th>
-            <label class="control-label">Địa Chỉ</label>
-            @*@Html.DisplayNameFor(model => model.Address)*@
-        </th>
-        <!--<th>
-            <label class="control-label"> Ghi Chú</label>-->
+            <!--</th>-->
+            <th>
+                <label class="control-label">Địa Chỉ</label>
+                @*@Html.DisplayNameFor(model => model.Address)*@
+            </th>
+            <!--<th>
+                <label class="control-label"> Ghi Chú</label>-->
             @*@Html.DisplayNameFor(model => model.Description)*@
-        <!--</th>-->
-        <th> Chức năng</th>
-    </tr>
+            <!--</th>-->
+            <th> Chức năng</th>
+        </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Role)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Username)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.Dob)
-    </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.IdCard)
-    </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.Address)
-    </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>*@
-    @*<td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
-    </td>*@
-<td class="list-action">
-    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.EmployeeID })">
-        <i class="fa fa-pencil-alt"></i>
-    </a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Dob)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IdCard)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                    </td>*@
+                <td class="list-action">
+                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.EmployeeID })">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
 
-    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.EmployeeID })"
-       onclick="return confirm('Bạn chắc chắn muốn xóa nhân viên này?')">
-        <i class="fa fa-trash-alt"></i>
-    </a>
-    @*
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
-        @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
-</td>
-</tr>
-}
+                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.EmployeeID })"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa nhân viên này?')">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                    @*
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.ApartmentID }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.ApartmentID })*@
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>

@@ -6,60 +6,62 @@
 <div class="header-list">
     <h2>Quản lý tòa nhà</h2>
 
-    @using (Html.BeginForm())
-    {
-        <div class="form-group form-inline">
-            @Html.TextBox("searchString", "", new { @class = "form-control" })
-            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
-        </div>
-    }
+    <div class="action-group">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inline">
+                @Html.TextBox("searchString", "", new { @class = "form-control" })
+                <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+            </div>
+        }
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "Buildings")" style="background-color: #918055">
-        Tạo mới
-    </a>
-    <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Buildings")">
+        <a class="btn-success btn-create" href="@Url.Action("Create", "Buildings")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "Buildings")">
             Export File
-    </a>
+        </a>
+    </div>
 </div>
+    <table class="content-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Chức Năng
+            </th>
+        </tr>
 
-<table class="content-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Branch.BranchName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BuildingName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            Chức Năng
-        </th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.BranchName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="list-action">
+                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.BuildingID })">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuildingName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td class="list-action">
-            <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.BuildingID })">
-                <i class="fa fa-pencil-alt"></i>
-            </a>
+                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BuildingID })"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
 
-            <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.BuildingID })"
-               onclick="return confirm('Bạn chắc chắn muốn xóa?')">
-                <i class="fa fa-trash-alt"></i>
-            </a>
-        </td>
-    </tr>
-}
-
-</table>
+    </table>

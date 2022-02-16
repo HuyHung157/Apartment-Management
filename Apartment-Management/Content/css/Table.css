@@ -1,53 +1,67 @@
-﻿.content-table {
+﻿.header-list .action-group {
+    display: flex;
+    align-content: center;
+}
+
+    .action-group a {
+        margin-left: 5px;
+    }
+
+.content-table {
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: Roboto ;
+    font-family: Roboto;
     width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.content-table tr th {
-    background-color: #918055;
-    color: #ffffff;
-    text-align: left;
-}
-.content-table th,.content-table td {
+
+    .content-table tr th {
+        background-color: #918055;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .content-table th, .content-table td {
         padding: 12px 30px;
     }
-.content-table  tr {
+
+    .content-table tr {
         border-bottom: 1px solid #dddddd;
     }
-.content-table tr.active-row {
-        font-weight: bold;
-        color: #009879;
+
+        .content-table tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+.header-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+    .header-list .btn-create {
+        padding: 8px;
+        border-radius: 6px;
     }
 
-.header-list{
-  display: flex;
-  align-items: center;
-  justify-content: space-between
+.list-action {
+    display: flex;
+    align-items: center;
 }
 
-  .header-list .btn-create{
-    padding: 8px;
-    border-radius: 6px;
-  }
+    .list-action a {
+        margin-right: 10px;
+    }
 
-.list-action{
-  display: flex;
-  align-items: center;
+    .list-action i {
+        font-size: 18px;
+    }
+
+th:hover a {
+    text-decoration: underline;
 }
-  .list-action a{
-    margin-right: 10px;
-  }
-
-  .list-action i {
-    font-size: 18px;
-  }
-
- th:hover a{
-     text-decoration: underline;
- }
 
 .pagination-group {
     display: flex;

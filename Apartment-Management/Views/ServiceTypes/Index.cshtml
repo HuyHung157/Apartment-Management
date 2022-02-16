@@ -7,79 +7,83 @@
 <div class="header-list">
     <h2>Quản lý loại dịch vụ</h2>
 
-    @using (Html.BeginForm())
-    {
-        <div class="form-group form-inline">
-            @Html.TextBox("searchString", "", new { @class = "form-control" })
-            <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
-        </div>
-    }
+    <div class="action-group">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inline">
+                @Html.TextBox("searchString", "", new { @class = "form-control" })
+                <button type="submit" class="btn btn-success"> <i class="fa fa-search"></i> </button>
+            </div>
+        }
 
-    <a class="btn-success btn-create" href="@Url.Action("Create", "ServiceTypes")" style="background-color: #918055">
-        Tạo mới
-    </a>
-    <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "ServiceTypes")">
+        <a class="btn-success btn-create" href="@Url.Action("Create", "ServiceTypes")" style="background-color: #918055">
+            Tạo mới
+        </a>
+        <a class="btn-secondary btn-create" href="@Url.Action("ExportToCSV", "ServiceTypes")">
             Export File
-    </a>
+        </a>
+    </div>
 </div>
-<table class="content-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ServiceTypeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Unit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
 
-        <th>Chức năng</th>
-    </tr>
+    <table class="content-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceTypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Month)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsArchive)
-        </td>*@
-    <td class="list-action">
-        <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceTypeID })">
-            <i class="fa fa-pencil-alt"></i>
-        </a>
+            <th>Chức năng</th>
+        </tr>
 
-        <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceTypeID })"
-           onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
-            <i class="fa fa-trash-alt"></i>
-        </a>
-    </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsArchive)
+                    </td>*@
+                <td class="list-action">
+                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceTypeID })">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
 
-</table>
+                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceTypeID })"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
