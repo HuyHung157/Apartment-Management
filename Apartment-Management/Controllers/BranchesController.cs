@@ -43,12 +43,12 @@ namespace Apartment_Management.Controllers
                     branch = branch.OrderBy(s => s.BranchName);
                     break;
             }
+
             int pageSize = 12;
             int pageNumber = (page ?? 1);
-
             if (searchString != "")
             {
-                var branches = branch.Where(x => x.BranchName.ToUpper().Contains(searchString.ToUpper()));
+                var branches = branch.Where(x => x.BranchName.ToUpper().Contains(searchString.ToUpper())).OrderBy(b => b.BranchID);
                 return View(branches.ToPagedList(pageNumber, pageSize));
             }
             else

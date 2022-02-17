@@ -1,5 +1,7 @@
-﻿@model IEnumerable<Apartment_Management.Models.ServiceType>
+﻿@model PagedList.IPagedList<Apartment_Management.Models.ServiceType>
+@using PagedList.Mvc;
 
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 @{
     ViewBag.Title = "Index";
 }
@@ -25,65 +27,70 @@
     </div>
 </div>
 
-    <table class="content-table">
+<table class="content-table">
+    <tr>
+        <th>
+            Loại dịch vụ
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Khối lượng tính
+        </th>
+        <th>
+            Năm
+        </th>
+        <th>
+            Tháng
+        </th>
+
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ServiceTypeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Unit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Month)
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsArchive)
+                </td>*@
+            <td class="list-action">
+                <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceTypeID })">
+                    <i class="fa fa-pencil-alt"></i>
+                </a>
 
-            <th>Chức năng</th>
+                <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceTypeID })"
+                   onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
+                    <i class="fa fa-trash-alt"></i>
+                </a>
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ServiceTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Unit)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Year)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Month)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsArchive)
-                    </td>*@
-                <td class="list-action">
-                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceTypeID })">
-                        <i class="fa fa-pencil-alt"></i>
-                    </a>
+</table>
 
-                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceTypeID })"
-                       onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
-                        <i class="fa fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-
-    </table>
+<div class="pagination-group">
+    <span>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</span>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+</div>

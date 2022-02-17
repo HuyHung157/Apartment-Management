@@ -14,7 +14,7 @@ namespace Apartment_Management.Models
         [DisplayName("Loại dịch vụ")]
         public int ServiceTypeID { get; set; }
         [DisplayName("Trạng thái")]
-        public string Status { get; set; }
+        public ServiceStatus Status { get; set; }
         [DisplayName("Số lượng")]
         public double Quantity { get; set; }
         [DisplayName("Thành tiền")]

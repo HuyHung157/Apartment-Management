@@ -11,4 +11,10 @@ namespace Apartment_Management.Models
         MANAGER,
         STAFF
     }
+
+    public enum ServiceStatus
+    {
+        COMPLETED,
+        IN_COMPLETED,
+    }
 }

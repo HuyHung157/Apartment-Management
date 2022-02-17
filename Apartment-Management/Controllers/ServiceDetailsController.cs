@@ -12,6 +12,7 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using PagedList;
 
 namespace Apartment_Management.Controllers
 {
@@ -21,17 +22,22 @@ namespace Apartment_Management.Controllers
         private AppContext db = new AppContext();
 
         // GET: ServiceDetails
-        public ActionResult Index(string searchString = "")
+        public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
             if (searchString != "")
             {
-                var serviceDetail = db.ServiceDetail.Where(x => x.ServiceType.ServiceTypeName.ToUpper().Contains(searchString.ToUpper())); ;
-                return View(serviceDetail.ToList());
+                var serviceDetail = db.ServiceDetail.Where(x => x.ServiceType.ServiceTypeName.ToUpper()
+                .Contains(searchString.ToUpper())).OrderBy(o => o.ServiceDetailID);
+                return View(serviceDetail.ToPagedList(pageNumber, pageSize));
             }
             else
             {
+                searchString = currentFilter;
+                ViewBag.CurrentFilter = currentFilter;
                 var serviceDetails = db.ServiceDetail.Include(s => s.Apartment).Include(s => s.ServiceType);
-                return View(serviceDetails.ToList());
+                return View(serviceDetails.ToPagedList(pageNumber, pageSize));
             }
         }
 

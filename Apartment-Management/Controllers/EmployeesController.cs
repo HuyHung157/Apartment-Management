@@ -12,6 +12,7 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using PagedList;
 
 namespace Apartment_Management.Controllers
 {
@@ -22,16 +23,22 @@ namespace Apartment_Management.Controllers
 
         // GET: Employees
         [Authorize]
-        public ActionResult Index(string searchString = "")
+        public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
             if (searchString != "")
             {
-                var employee = db.Employee.Where(x => x.FirstName.ToUpper().Contains(searchString.ToUpper())); ;
-                return View(employee.ToList());
+                var employee = db.Employee.Where(x => x.FirstName.ToUpper()
+                .Contains(searchString.ToUpper())).OrderBy(o => o.EmployeeID);
+                return View(employee.ToPagedList(pageNumber, pageSize));
             }
             else
             {
-                return View(db.Employee.ToList());
+                searchString = currentFilter;
+                ViewBag.CurrentFilter = currentFilter;
+                var emp = db.Employee.OrderBy(e => e.EmployeeID);
+                return View(emp.ToPagedList(pageNumber, pageSize));
             }
         }
 

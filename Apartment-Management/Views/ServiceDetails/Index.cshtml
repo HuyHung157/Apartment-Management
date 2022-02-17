@@ -1,5 +1,7 @@
-﻿@model IEnumerable<Apartment_Management.Models.ServiceDetail>
+﻿@model PagedList.IPagedList<Apartment_Management.Models.ServiceDetail>
+@using PagedList.Mvc;
 
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 @{
     ViewBag.Title = "Index";
 }
@@ -25,76 +27,81 @@
     </div>
 </div>
 
-    <table class="content-table">
+<table class="content-table">
+    <tr>
+        <th>
+            Loại dịch vụ
+        </th>
+        <th>
+            Tên căn hộ
+        </th>
+        <th>
+            Số lượng 
+        </th>
+        <th>
+            Số tiền
+        </th>
+        <th>
+            Năm
+        </th>
+        <th>
+            Tháng
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apartment.ApartmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Month)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>Chức năng</th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apartment.ApartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsArchive)
+                </td>*@
+            <td class="list-action">
+                <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceDetailID })">
+                    <i class="fa fa-pencil-alt"></i>
+                </a>
+
+                <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })"
+                   onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
+                    <i class="fa fa-trash-alt"></i>
+                </a>
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apartment.ApartmentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Year)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Month)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsArchive)
-                    </td>*@
-                <td class="list-action">
-                    <a data-toggle="tooltip" title="Chỉnh sửa" class="text-primary" href="@Url.Action("Edit", new { id = item.ServiceDetailID })">
-                        <i class="fa fa-pencil-alt"></i>
-                    </a>
+</table>
 
-                    <a data-toggle="tooltip" title="Xóa" class="text-danger" href="@Url.Action("Delete", new { id = item.ServiceDetailID })"
-                       onclick="return confirm('Bạn chắc chắn muốn xóa ?')">
-                        <i class="fa fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-
-    </table>
+<div class="pagination-group">
+    <span>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</span>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+</div>
