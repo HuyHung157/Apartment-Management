@@ -88,7 +88,7 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BranchID,BranchName,Address,Description,IsActive,IsArchive")] Branch branch)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && branch.BranchName != null && branch.Address != null)
             {
                 branch.IsActive = true;
                 branch.IsArchive = false;
@@ -126,7 +126,7 @@ namespace Apartment_Management.Controllers
             {
                 branch.IsArchive = true;
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && branch.BranchName != null && branch.Address != null)
             {
                 db.Entry(branch).State = EntityState.Modified;
                 db.SaveChanges();

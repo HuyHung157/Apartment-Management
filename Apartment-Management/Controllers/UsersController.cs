@@ -72,7 +72,7 @@ namespace Apartment_Management.Controllers
         {
             user.IsActive = true;
             user.IsArchive = false;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user.FirstName != null && user.LastName != null && user.PhoneNumber != null && user.IdCard != null && user.ApartmentDetail != null && user.Dob != null && user.Address != null)
             {
                 db.User.Add(user);
                 db.SaveChanges();
@@ -108,7 +108,7 @@ namespace Apartment_Management.Controllers
             {
                 user.IsArchive = true;
             }    
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user.FirstName != null && user.LastName != null && user.PhoneNumber != null && user.IdCard != null && user.ApartmentDetail != null && user.Dob != null && user.Address != null)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();

@@ -71,7 +71,7 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ServiceDetailID,ApartmentID,ServiceTypeID,Status,Quantity,Amount,Year,Month,Description,IsActive,IsArchive")] ServiceDetail serviceDetail)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && serviceDetail.Status != null && serviceDetail.Quantity != null && serviceDetail.Amount != null && serviceDetail.Year != null && serviceDetail.Month != null)
             {
                 serviceDetail.IsActive = true;
                 serviceDetail.IsArchive = false;
@@ -113,7 +113,7 @@ namespace Apartment_Management.Controllers
             {
                 serviceDetail.IsArchive = true;
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && serviceDetail.Status != null && serviceDetail.Quantity != null && serviceDetail.Amount != null && serviceDetail.Year != null && serviceDetail.Month != null)
             {
                 db.Entry(serviceDetail).State = EntityState.Modified;
                 db.SaveChanges();

@@ -71,7 +71,7 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ApartmentID,BuildingID,ApartmentName,Description,IsActive,IsArchive")] Apartment apartment)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && apartment.ApartmentName != null && apartment.BuildingID != null)
             {
                 apartment.IsActive = true;
                 apartment.IsArchive = false;
@@ -111,7 +111,7 @@ namespace Apartment_Management.Controllers
             {
                 apartment.IsArchive = true;
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && apartment.ApartmentName != null && apartment.BuildingID != null)
             {
                 db.Entry(apartment).State = EntityState.Modified;
                 db.SaveChanges();

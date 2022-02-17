@@ -70,7 +70,7 @@ namespace Apartment_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeID,Role,Username,Password,FirstName,LastName,Dob,PhoneNumber,IdCard,Address,Description,IsActive,IsArchive")] Employee employee)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && employee.FirstName != null && employee.LastName != null && employee.Dob != null && employee.IdCard != null && employee.PhoneNumber != null && employee.Username != null && employee.Password != null && employee.Address != null)
             {
 
                 employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
@@ -110,7 +110,7 @@ namespace Apartment_Management.Controllers
             {
                 employee.IsArchive = true;
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && employee.FirstName != null && employee.LastName != null && employee.Dob != null && employee.IdCard != null && employee.PhoneNumber != null && employee.Username != null && employee.Password != null && employee.Address != null)
             {
                 employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
                 db.Entry(employee).State = EntityState.Modified;
