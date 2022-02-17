@@ -36,7 +36,7 @@ namespace Apartment_Management.Controllers
             {
                 searchString = currentFilter;
                 ViewBag.CurrentFilter = currentFilter;
-                var serviceDetails = db.ServiceDetail.Include(s => s.Apartment).Include(s => s.ServiceType);
+                var serviceDetails = db.ServiceDetail.Include(s => s.Apartment).Include(s => s.ServiceType).OrderBy(o => o.ServiceTypeID);
                 return View(serviceDetails.ToPagedList(pageNumber, pageSize));
             }
         }
