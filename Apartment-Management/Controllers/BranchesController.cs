@@ -44,7 +44,7 @@ namespace Apartment_Management.Controllers
                     break;
             }
 
-            int pageSize = 12;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             if (searchString != "")
             {

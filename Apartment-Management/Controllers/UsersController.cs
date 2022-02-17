@@ -24,7 +24,7 @@ namespace Apartment_Management.Controllers
         // GET: Users
         public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
-            int pageSize = 12;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             if (searchString != "")
             {
@@ -35,7 +35,8 @@ namespace Apartment_Management.Controllers
             {
                 searchString = currentFilter;
                 ViewBag.CurrentFilter = currentFilter;
-                return View(db.User.ToPagedList(pageNumber, pageSize));
+                var user = db.User.OrderBy(o => o.UserID);
+                return View(user.ToPagedList(pageNumber, pageSize));
             }
         }
 
