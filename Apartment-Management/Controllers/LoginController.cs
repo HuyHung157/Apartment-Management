@@ -60,18 +60,11 @@ namespace Apartment_Management.Controllers
             var account = db.Employee.SingleOrDefault(a => a.Username.Equals(username));
             if (account != null)
             {
-                //TODO: remove check account by equal function
-                var obj = db.Employee.Where(a => a.Username.Equals(username)
-                               && a.Password.Equals(password)).FirstOrDefault();
-                if(obj == null)
+                if (BCrypt.Net.BCrypt.Verify(password, account.Password))
                 {
-                    if (BCrypt.Net.BCrypt.Verify(password, account.Password))
-                    {
-                        return account;
-                    }
-                    return null;
+                    return account;
                 }
-                return obj;
+                return null;
             }
             return null;
         }
