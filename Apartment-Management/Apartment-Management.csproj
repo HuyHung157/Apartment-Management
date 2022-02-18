@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202112210755514_remove-field-loginerror.designer.cs">
       <DependentUpon>202112210755514_remove-field-loginerror.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202170301198_update-migration service detail.cs" />
+    <Compile Include="Migrations\202202170301198_update-migration service detail.designer.cs">
+      <DependentUpon>202202170301198_update-migration service detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentDetail.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112210755514_remove-field-loginerror.resx">
       <DependentUpon>202112210755514_remove-field-loginerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202170301198_update-migration service detail.resx">
+      <DependentUpon>202202170301198_update-migration service detail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
