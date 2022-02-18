@@ -204,7 +204,7 @@
       <DependentUpon>202112210755514_remove-field-loginerror.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202202170301198_update-migration service detail.cs" />
-    <Compile Include="Migrations\202202170301198_update-migration service detail.Designer.cs">
+    <Compile Include="Migrations\202202170301198_update-migration service detail.designer.cs">
       <DependentUpon>202202170301198_update-migration service detail.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
