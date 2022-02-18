@@ -24,7 +24,7 @@ namespace Apartment_Management.Controllers
         [Authorize]
         public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
-            int pageSize = 12;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             if (searchString != "")
             {

@@ -24,7 +24,7 @@ namespace Apartment_Management.Controllers
         // GET: ServiceTypes
         public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
-            int pageSize = 12;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             if (searchString != "")
             {
@@ -155,7 +155,7 @@ namespace Apartment_Management.Controllers
         public void ExportToCSV()
         {
             StringWriter strw = new StringWriter();
-            strw.WriteLine("\"ServiceTypeID\",\"Tên dịch vụ\",\"Đơn giá\",\"Unit\",\"Tháng\",\"Năm\",\"Ghi chú\",\"IsActive\",\"IsActive\",\"IsArchive\"");
+            strw.WriteLine("\"ServiceTypeID\",\"Tên dịch vụ\",\"Đơn giá\",\"Unit\",\"Tháng\",\"Năm\",\"Ghi chú\",\"IsActive\",\"IsArchive\"");
             Response.ClearContent();
             Response.AddHeader("content-disposition", string.Format("attachment;filename=Canho_{0}.csv", DateTime.Now.ToString("dd/MM/yyyy-H:mm")));
             Response.ContentType = "text/csv";
