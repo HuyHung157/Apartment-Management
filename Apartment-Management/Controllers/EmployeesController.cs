@@ -25,7 +25,7 @@ namespace Apartment_Management.Controllers
         [Authorize]
         public ActionResult Index(string currentFilter, int? page, string searchString = "")
         {
-            int pageSize = 12;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             if (searchString != "")
             {
@@ -72,7 +72,6 @@ namespace Apartment_Management.Controllers
         {
             if (ModelState.IsValid && employee.FirstName != null && employee.LastName != null && employee.Dob != null && employee.IdCard != null && employee.PhoneNumber != null && employee.Username != null && employee.Password != null && employee.Address != null)
             {
-
                 employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
                 employee.IsActive = true;
                 employee.IsArchive = false;

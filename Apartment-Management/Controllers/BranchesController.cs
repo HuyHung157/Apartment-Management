@@ -6,11 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Apartment_Management.Context;
-using Apartment_Management.Models;
 using System.IO;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Text;
 using PagedList;
 
